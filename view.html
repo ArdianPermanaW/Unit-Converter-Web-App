@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Patrick+Hand&family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="white-box">
@@ -48,9 +50,9 @@
                     <button type="submit">Submit</button>
                 </form>
                 <div id="lengthResult" style="display:none;">
-                    <p>Result of your calculation</p>
+                    <label>Result of your calculation</label>
                     <h1 id="lengthResultText"></h1>
-                    <button onclick="reset('lengthForm')">Reset</button>
+                    <button type="reset" onclick="reset('lengthForm')">Reset</button>
                 </div>
             </div>
             <div id="tab2" class="tab-panel" style="display:none;">
@@ -58,7 +60,7 @@
                     <label for="weightInput">Enter the weight to convert</label>
                     <input type="number" id="weightInput" name="weightInput" min="0" required><br><br>
                 
-                    <label for="fromWeightUnit">Unit to convert from:</label>
+                    <label for="fromWeightUnit">Unit to convert from</label>
                     <select id="fromWeightUnit" name="fromWeightUnit" required>
                         <option value="">--Select an option--</option>
                         <option value="mg">Milligram</option>
@@ -69,7 +71,7 @@
                         <option value="oz">Ounce</option>
                     </select><br><br>
                 
-                    <label for="toWeightUnit">Unit to convert to:</label>
+                    <label for="toWeightUnit">Unit to convert to</label>
                     <select id="toWeightUnit" name="toWeightUnit" required>
                         <option value="">--Select an option--</option>
                         <option value="mg">Milligram</option>
@@ -86,7 +88,7 @@
                 <div id="weightResultBlock" style="display:none;">
                     <p>Result of your calculation</p>
                     <h1 id="weightResultText"></h1>
-                    <button onclick="reset('weightForm')">Reset</button>
+                    <button type="reset" onclick="reset('weightForm')">Reset</button>
                 </div>
             </div>
             <div id="tab3" class="tab-panel" style="display:none;">
@@ -94,7 +96,7 @@
                     <label for="temperatureInput">Enter the temperature to convert</label>
                     <input type="number" id="temperatureInput" name="temperatureInput" required><br><br>
                 
-                    <label for="fromTempUnit">Unit to convert from:</label>
+                    <label for="fromTempUnit">Unit to convert from</label>
                     <select id="fromTempUnit" name="fromTempUnit" required>
                         <option value="">--Select an option--</option>
                         <option value="C">Celsius</option>
@@ -103,7 +105,7 @@
                         <option value="R">Réaumur </option>
                     </select><br><br>
                 
-                    <label for="toTempUnit">Unit to convert to:</label>
+                    <label for="toTempUnit">Unit to convert to</label>
                     <select id="toTempUnit" name="toTempUnit" required>
                         <option value="">--Select an option--</option>
                         <option value="C">Celsius</option>
@@ -118,7 +120,7 @@
                 <div id="temperatureResultBlock" style="display:none;">
                     <p>Result of your calculation</p>
                     <h1 id="temperatureResultText"></h1>
-                    <button onclick="reset('temperatureForm')">Reset</button>
+                    <button type="reset" onclick="reset('temperatureForm')">Reset</button>
                 </div>
 
             </div>
