@@ -9,13 +9,13 @@
     <div class="white-box">
         <h1>Unit Converter</h1>
         <div class="tabs">
-            <button class="tab-button" onclick="switchTab('tab1')">Tab 1</button>
-            <button class="tab-button" onclick="switchTab('tab2')">Tab 2</button>
-            <button class="tab-button" onclick="switchTab('tab3')">Tab 3</button>
+            <button class="tab-button" onclick="switchTab('tab1')">Length</button>
+            <button class="tab-button" onclick="switchTab('tab2')">Weight</button>
+            <button class="tab-button" onclick="switchTab('tab3')">Temperature</button>
         </div>
         <div class="tab-content">
             <div id="tab1" class="tab-panel">
-                <form id="lengthForm" onsubmit="handleSubmit(event)">
+                <form id="lengthForm" onsubmit="handleLengthSubmit(event)">
                     <label for="lengthInput">Enter the length to convert</label>
                     <input type="number" id="lengthInput" name="numberInput" min="0" required><br><br>
                     
@@ -47,19 +47,80 @@
 
                     <button type="submit">Submit</button>
                 </form>
-                <div id="resultDiv" style="display:none;">
+                <div id="lengthResult" style="display:none;">
                     <p>Result of your calculation</p>
-                    <h1 id="result"></h1>
-                    <button onclick="reset()">Reset</button>
+                    <h1 id="lengthResultText"></h1>
+                    <button onclick="reset('lengthForm')">Reset</button>
                 </div>
             </div>
             <div id="tab2" class="tab-panel" style="display:none;">
-                <h1>Content for Tab 2</h1>
-                <p>This is the content of the second tab.</p>
+                <form id="weightForm" onsubmit="handleWeightSubmit(event)">
+                    <label for="weightInput">Enter the weight to convert</label>
+                    <input type="number" id="weightInput" name="weightInput" min="0" required><br><br>
+                
+                    <label for="fromWeightUnit">Unit to convert from:</label>
+                    <select id="fromWeightUnit" name="fromWeightUnit" required>
+                        <option value="">--Select an option--</option>
+                        <option value="mg">Milligram</option>
+                        <option value="g">Gram</option>
+                        <option value="kg">Kilogram</option>
+                        <option value="ton">Metric Ton</option>
+                        <option value="lb">Pound</option>
+                        <option value="oz">Ounce</option>
+                    </select><br><br>
+                
+                    <label for="toWeightUnit">Unit to convert to:</label>
+                    <select id="toWeightUnit" name="toWeightUnit" required>
+                        <option value="">--Select an option--</option>
+                        <option value="mg">Milligram</option>
+                        <option value="g">Gram</option>
+                        <option value="kg">Kilogram</option>
+                        <option value="ton">Metric Ton</option>
+                        <option value="lb">Pound</option>
+                        <option value="oz">Ounce</option>
+                    </select><br><br>
+                
+                    <button type="submit">Submit</button>
+                </form>
+
+                <div id="weightResultBlock" style="display:none;">
+                    <p>Result of your calculation</p>
+                    <h1 id="weightResultText"></h1>
+                    <button onclick="reset('weightForm')">Reset</button>
+                </div>
             </div>
             <div id="tab3" class="tab-panel" style="display:none;">
-                <h1>Content for Tab 3</h1>
-                <p>This is the content of the third tab.</p>
+                <form id="temperatureForm" onsubmit="handleTemperatureSubmit(event)">
+                    <label for="temperatureInput">Enter the temperature to convert</label>
+                    <input type="number" id="temperatureInput" name="temperatureInput" required><br><br>
+                
+                    <label for="fromTempUnit">Unit to convert from:</label>
+                    <select id="fromTempUnit" name="fromTempUnit" required>
+                        <option value="">--Select an option--</option>
+                        <option value="C">Celsius</option>
+                        <option value="F">Fahrenheit</option>
+                        <option value="K">Kelvin</option>
+                        <option value="R">Réaumur </option>
+                    </select><br><br>
+                
+                    <label for="toTempUnit">Unit to convert to:</label>
+                    <select id="toTempUnit" name="toTempUnit" required>
+                        <option value="">--Select an option--</option>
+                        <option value="C">Celsius</option>
+                        <option value="F">Fahrenheit</option>
+                        <option value="K">Kelvin</option>
+                        <option value="R">Réaumur </option>
+                    </select><br><br>
+                
+                    <button type="submit">Submit</button>
+                </form>
+
+                <div id="temperatureResultBlock" style="display:none;">
+                    <p>Result of your calculation</p>
+                    <h1 id="temperatureResultText"></h1>
+                    <button onclick="reset('temperatureForm')">Reset</button>
+                </div>
+
             </div>
         </div>
     </div>

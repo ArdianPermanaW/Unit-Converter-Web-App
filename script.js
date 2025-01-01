@@ -7,7 +7,7 @@ function switchTab(tabId) {
     activeTab.style.display = 'block';
 }
 
-function handleSubmit(event) {
+function handleLengthSubmit(event) {
     event.preventDefault();  // Prevent form submission to avoid page reload
     
     // Get the values from the form
@@ -92,12 +92,152 @@ function handleSubmit(event) {
 
     document.getElementById('lengthForm').style.display = 'none';
     const resultText = `${lengthInput} ${from} = ${result.toFixed(2)} ${to}`;
-    document.getElementById('result').textContent = resultText;
-    document.getElementById('resultDiv').style.display = 'block';
+    document.getElementById('lengthResultText').textContent = resultText;
+    document.getElementById('lengthResult').style.display = 'block';
 }
 
-function reset() {
+function handleWeightSubmit(event) {
+    event.preventDefault();  // Prevent form submission to avoid page reload
+
+    // Get the values from the form
+    const weightInput = document.getElementById('weightInput').value;
+    const fromUnit = document.getElementById('fromWeightUnit').value;
+    const toUnit = document.getElementById('toWeightUnit').value;
+
+    if (!weightInput || !fromUnit || !toUnit) {
+        alert('Please fill out all fields.');
+        return;
+    }
+
+    console.log("Weight Input:", weightInput);
+    console.log("Dropdown 1:", fromUnit);
+    console.log("Dropdown 2:", toUnit);
+
+    // Convert to kilograms first
+    let weightInKilograms = 0;
+
+    switch (fromUnit) {
+        case 'mg':
+            weightInKilograms = weightInput / 1e6;
+            break;
+        case 'g':
+            weightInKilograms = weightInput / 1000;
+            break;
+        case 'kg':
+            weightInKilograms = weightInput;
+            break;
+        case 'ton':
+            weightInKilograms = weightInput * 1000;
+            break;
+        case 'lb':
+            weightInKilograms = weightInput * 0.453592;
+            break;
+        case 'oz':
+            weightInKilograms = weightInput * 0.0283495;
+            break;
+        default:
+            alert('Invalid from unit');
+            return;
+    }
+
+    // Then convert kilograms to target unit
+    let result = 0;
+
+    switch (toUnit) {
+        case 'mg':
+            result = weightInKilograms * 1e6;
+            break;
+        case 'g':
+            result = weightInKilograms * 1000;
+            break;
+        case 'kg':
+            result = weightInKilograms;
+            break;
+        case 'ton':
+            result = weightInKilograms / 1000;
+            break;
+        case 'lb':
+            result = weightInKilograms / 0.453592;
+            break;
+        case 'oz':
+            result = weightInKilograms / 0.0283495;
+            break;
+        default:
+            alert('Invalid to unit');
+            return;
+    }
+
+    document.getElementById('weightForm').style.display = 'none';
+    const resultText = `${weightInput} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
+    document.getElementById('weightResultText').textContent = resultText;
+    document.getElementById('weightResultBlock').style.display = 'block';
+}
+
+function handleTemperatureSubmit(event) {
+    event.preventDefault();
+
+    const temperatureInput = parseFloat(document.getElementById('temperatureInput').value);
+    const fromUnit = document.getElementById('fromTempUnit').value;
+    const toUnit = document.getElementById('toTempUnit').value;
+
+    if (isNaN(temperatureInput) || !fromUnit || !toUnit) {
+        alert('Please fill out all fields with valid inputs.');
+        return;
+    }
+
+    let tempInCelsius;
+
+    // Convert from source unit to Celsius
+    switch (fromUnit) {
+        case 'C':
+            tempInCelsius = temperatureInput;
+            break;
+        case 'F':
+            tempInCelsius = (temperatureInput - 32) * 5 / 9;
+            break;
+        case 'K':
+            tempInCelsius = temperatureInput - 273.15;
+            break;
+        case 'R':
+            tempInCelsius = temperatureInput * 5 / 4;
+            break;
+        default:
+            alert('Invalid from unit');
+            return;
+    }
+
+    let result;
+
+    // Convert from Celsius to target unit
+    switch (toUnit) {
+        case 'C':
+            result = tempInCelsius;
+            break;
+        case 'F':
+            result = (tempInCelsius * 9 / 5) + 32;
+            break;
+        case 'K':
+            result = tempInCelsius + 273.15;
+            break;
+        case 'R':
+            result = tempInCelsius * 4 / 5;
+            break;
+        default:
+            alert('Invalid to unit');
+            return;
+    }
+
+    document.getElementById('temperatureForm').style.display = 'none';
+    const resultText = `${temperatureInput} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
+    document.getElementById('temperatureResultText').textContent = resultText;
+    document.getElementById('temperatureResultBlock').style.display = 'block';
+}
+
+
+function reset(form) {
     // Show the form again and hide the result div
-    document.getElementById('lengthForm').style.display = 'block';
-    document.getElementById('resultDiv').style.display = 'none';
+    document.getElementById(form).style.display = 'block';
+    document.getElementById('lengthResult').style.display = 'none';
+    document.getElementById('weightResultBlock').style.display = 'none';
+    document.getElementById('temperatureResultBlock').style.display = 'none';
 }
